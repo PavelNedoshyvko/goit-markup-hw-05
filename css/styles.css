@@ -146,17 +146,20 @@ body {
   color: var(--pressed-state-ocean);
 }
 
-.site-nav .current .page {
+.site-nav .current-page {
+  position: relative;
   color: var(--pressed-state-ocean);
 }
 
-.site-nav .current::after {
-  display: block;
+.site-nav .current-page::after {
   content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
   width: 100%;
   height: 4px;
-  border-radius: 2px;
   background-color: var(--pressed-state-ocean);
+  border-radius: 2px;
 }
 
 /* Address */
@@ -403,8 +406,8 @@ section.customers {
   border: 1px solid var(--subtle-text-light-slate);
   border-radius: 4px;
   color: var(--subtle-text-light-slate);
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .customers .icon-wrap:hover,
@@ -528,26 +531,32 @@ section.customers {
   position: absolute;
   top: 24px;
   right: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 24px;
   height: 24px;
+  padding: 0;
   color: var(--dark-navy-blue);
   background-color: var(--accent-cornflower);
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
+  cursor: pointer;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modal .btn-close:hover,
 .modal .btn-close:focus {
   color: var(--white-background);
   background-color: var(--pressed-state-ocean);
-  border-color: var(--pressed-state-ocean);
+  border: none;
 }
 
 .modal .icon {
   fill: currentColor;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /**
@@ -586,6 +595,7 @@ section.customers {
   border: 1px solid var(--accent-cornflower);
   border-radius: 4px;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -647,13 +657,12 @@ section.customers {
 
 .gallery .card-content {
   position: absolute;
-  top: 100%;
+  top: 0;
   left: 0;
+  transform: translateY(100%);
   width: 100%;
   height: 100%;
-  padding-top: 40px;
-  padding-left: 32px;
-  padding-right: 32px;
+  padding: 40px 32px;
   color: var(--light-cloud);
 
   background-color: var(--primary-brand-iris);
@@ -661,5 +670,5 @@ section.customers {
 }
 
 .gallery .card-link:hover .card-content {
-  transform: translateY(-100%);
+  transform: translateY(0%);
 }
